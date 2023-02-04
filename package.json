@@ -4,18 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --loader tsx --test **/*.test.ts",
+    "start": "node --loader tsx ./src/example.ts"
   },
   "keywords": [],
   "author": "EiffelFly",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.9.5"
+    "@types/mdast": "^3.0.10",
+    "tsx": "^3.12.2",
+    "typescript": "^4.9.5",
+    "unified": "^10.1.2"
   },
   "dependencies": {
     "@types/node": "^18.11.18",
     "fast-glob": "^3.2.12",
     "remark": "^14.0.2",
+    "remark-directive": "^2.0.1",
     "remark-frontmatter": "^4.0.1",
     "unist-util-visit": "^4.1.2"
   }
