@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "module": "build/index.esm.js",
+  "typings": "build/index.d.ts",
   "scripts": {
     "test": "node --loader tsx --test **/*.test.ts",
     "start": "node --loader tsx ./src/example.ts",
