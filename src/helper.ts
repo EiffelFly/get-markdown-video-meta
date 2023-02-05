@@ -1,34 +1,36 @@
-export const consoleLogWithColor = (
+export const consoleLogMessageTitleWithColor = (
   type: "warn" | "error" | "info",
-  message: string
+  title: any
 ) => {
   switch (type) {
     case "warn":
       console.log("\n");
       console.log(
         "\x1b[33m\x1b[43m%s\x1b[0m",
-        "GET_MARKDOWN_VIDEO_META_WARN: "
+        "GET_MARKDOWN_VIDEO_META_WARN: ",
+        title
       );
-      console.log(message);
       break;
 
     case "error":
       console.log("\n");
       console.log(
         "\x1b[37m\x1b[41m%s\x1b[0m",
-        "GET_MARKDOWN_VIDEO_META_ERROR:"
+        "GET_MARKDOWN_VIDEO_META_ERROR:",
+        title
       );
-      console.log(message);
       break;
+
     case "info":
       console.log("\n");
       console.log(
         "\x1b[34m\x1b[100m%s\x1b[0m",
-        "GET_MARKDOWN_VIDEO_META_INFO:"
+        "GET_MARKDOWN_VIDEO_META_INFO:",
+        title
       );
-      console.log(message);
       break;
+
     default:
-      console.log(message);
+      console.log(title);
   }
 };
