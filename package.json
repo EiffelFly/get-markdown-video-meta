@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "node --loader tsx --test **/*.test.ts",
-    "start": "node --loader tsx ./src/example.ts"
+    "start": "node --loader tsx ./src/example.ts",
+    "ts-types": "tsc --emitDeclarationOnly --outDir build",
+    "build": "pnpm rimraf build && node ./esbuild.js && pnpm ts-types"
   },
   "keywords": [],
   "author": "EiffelFly",
   "license": "MIT",
   "devDependencies": {
     "@types/mdast": "^3.0.10",
+    "esbuild": "^0.17.5",
+    "rimraf": "^4.1.2",
     "tsx": "^3.12.2",
     "typescript": "^4.9.5",
     "unified": "^10.1.2"
