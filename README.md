@@ -60,15 +60,75 @@ const meta = getMarkdownVideoMeta({
 
 ### Configuration
 
-| Options                     | Type    | Required                                  | Default    | Description                                                                                                                                                                                                                                        |
-|-----------------------------|---------|-------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| targets                     | array   | true                                      | -          | The target folder that your md/mdx files live. It can be multiple folders.                                                                                                                                                                         |
-| mdxComponents               | array   | either this or directiveComponents exists | -          | ```{   componentName: string;   propName: "id" \| "url" \| "href"; } ```  Array of mdxComponent that your mdx file is using.                                                                                                                       |
-| mdxComponents.componentName | string  | true                                      | -          | The component name of the component injected into mdx file  Take the example below, the componentName will be "Youtube"  ``` export const Youtube = ({ url }) => <div url={url}>Youtube</div>;  <Youtube url="https://youtu.be/0DPZ9b9ZZr4" /> ``` |
-| directiveComponents         | array   | either this or mdxComponents exists       | -          |                                                                                                                                                                                                                                                    |
-| googleApiKey                | string  | false                                     | undefinded | If you provide this key, we will directly request Google API for the information of youtube videos. (Implementing)                                                                                                                                 |
-| verbose                     | boolean | false                                     | false      | Display useful debug info.                                                                                                                                                                                                                         |
+#### `targets`
 
+- type: Array of string
+- required: true
+- description: The target folder that your md/mdx files live. It can be multiple folders.
+- example: `["/blog"]`
+
+#### `mdxComponents	`
+
+- type: array of `{ componentName: string; propName: "id" | "url" | "href"; }`
+- required: either mdxComponents or directiveComponents exists
+- description: Array of mdxComponent that your mdx file is using
+- example: Take the mdx file below for example, the componentName will be `Youtube` and the propName will be `url`
+
+```mdx
+---
+title: youtube-blog-post-mdx
+---
+
+export const Youtube = ({ url }) => <div url={url}>Youtube</div>;
+
+<Youtube url="https://youtu.be/0DPZ9b9ZZr4" />
+```
+
+#### `directiveComponents`
+
+- type: array of `{ directiveName: string; propName: "id" | "url" | "href"; }`
+- required: either mdxComponents or directiveComponents exists
+- description: Array of directive that your md file is using
+- example: Take the md file below for example, the componentName will be `youtube` and the propName will be `url`
+
+```md
+---
+title: youtube-blog-post-directive
+---
+
+::youtube{id=DXUAyRRkI6k}
+```
+
+#### `googleApiKey`
+
+- type: string
+- required: false
+- description: If this key is in present, we will directly request Google API for much richer information of youtube videos. (Implementing)
+
+#### `verbose`
+
+- type: boolean
+- required: false (default)
+- description: Display useful debug info
+
+### Response video meta
+
+```ts
+// Currrently, we only support simplified youtube meta coming from oembed api
+export type SimpifiedYoutubeMeta = {
+  title: string;
+  author_name: string;
+  author_url: string;
+  thumbnail_height: number;
+  thumbnail_width: number;
+  thumbnail_url: string;
+  html: string;
+};
+```
+
+## License
+
+MIT
 
 [^1]: [Video indexing report](https://support.google.com/webmasters/answer/9495631)
 [^2]: [Video SEO best practices#Help Google find your videos](https://developers.google.com/search/docs/appearance/video#help-google-find)
