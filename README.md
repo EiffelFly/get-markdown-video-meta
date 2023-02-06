@@ -32,6 +32,14 @@ One of the situation is encountering "Google could not determine the prominent v
 
 ## How to use.
 
+### Install
+
+```sh
+npm install get-markdown-video-meta
+yarn add get-markdown-video-meta
+pnpm i get-markdown-video-meta
+```
+
 ### Dependencies
 
 This tool relys on these dependencies, you have to install them:
