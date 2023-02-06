@@ -20,11 +20,13 @@ export type DirectiveComponent = {
 
 export type GetMarkdownVideoMetaOption = {
   targets: string[];
-  googleApiKey?: string;
+
   mdxComponents?: MDXComponent[];
   directiveComponents?: DirectiveComponent[];
+
   // Log useful information
   verbose?: boolean;
+  googleApiKey?: string;
 };
 export type RichYoutubeMeta = {};
 
@@ -165,6 +167,7 @@ export async function getMarkdownVideoMeta({
     return Promise.resolve(metas);
   }
 
+  // We don't support google api yet.
   return Promise.resolve([]);
 }
 

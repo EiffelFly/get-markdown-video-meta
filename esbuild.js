@@ -10,5 +10,6 @@ esbuild
     target: "esnext",
     format: "esm",
     packages: "external",
+    platform: "node",
   })
   .catch(() => process.exit(1));
