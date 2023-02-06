@@ -11,7 +11,7 @@
     "ts-types": "tsc --emitDeclarationOnly --outDir build",
     "build": "pnpm rimraf build && node ./esbuild.js && pnpm ts-types"
   },
-  "keywords": [],
+  "keywords": ["markdown", "MDX", "remark", "SEO", "javascript", "typescript"],
   "author": "EiffelFly",
   "license": "MIT",
   "devDependencies": {
