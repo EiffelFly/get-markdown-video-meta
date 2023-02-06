@@ -52,7 +52,7 @@ Then you can import the named export of this tool.
 ```ts
 import { getMarkdownVideoMeta } from "get-markdown-video-meta"
 
-const meta = getMarkdownVideoMeta({
+const meta = await getMarkdownVideoMeta({
   targets: ["/blog"],
   mdxComponents: [{ componentName: "Youtube", propName: "url" }],
 });
