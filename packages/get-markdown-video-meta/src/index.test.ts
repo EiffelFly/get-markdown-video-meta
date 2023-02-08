@@ -4,7 +4,7 @@ import { getMarkdownVideoMeta } from ".";
 
 test("Should get the meta from youtube-directive example", async () => {
   const meta = await getMarkdownVideoMeta({
-    targets: ["example/youtube-directive/blog"],
+    targets: ["examples/youtube-directive/blog"],
     directiveComponents: [{ directiveName: "youtube", propName: "id" }],
   });
 
@@ -23,7 +23,7 @@ test("Should get the meta from youtube-directive example", async () => {
 
 test("Should get the meta from youtube-mdx example", async () => {
   const meta = await getMarkdownVideoMeta({
-    targets: ["example/youtube-mdx/blog"],
+    targets: ["examples/youtube-mdx/blog"],
     mdxComponents: [{ componentName: "Youtube", propName: "url" }],
   });
 

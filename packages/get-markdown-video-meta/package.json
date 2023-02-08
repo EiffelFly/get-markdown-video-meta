@@ -1,0 +1,42 @@
+{
+  "name": "get-markdown-video-meta",
+  "version": "0.0.1",
+  "description": "Get your video's metadata in the markdown or mdx file. Powered by remarkjs, fully typed.",
+  "main": "index.js",
+  "module": "build/index.esm.js",
+  "typings": "build/index.d.ts",
+  "scripts": {
+    "test": "node --loader tsx --test **/*.test.ts",
+    "start": "node --loader tsx ./src/example.ts",
+    "ts-types": "tsc --emitDeclarationOnly --outDir build",
+    "build": "pnpm rimraf build && node ./esbuild.js && pnpm ts-types"
+  },
+  "keywords": ["markdown", "MDX", "remark", "SEO", "javascript", "typescript"],
+  "author": "EiffelFly",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mdast": "^3.0.10",
+    "esbuild": "^0.17.5",
+    "rimraf": "^4.1.2",
+    "tsx": "^3.12.2",
+    "typescript": "^4.9.5",
+    "unified": "^10.1.2",
+    "@types/node": "^18.11.18"
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.12",
+    "remark": "^14.0.2",
+    "remark-directive": "^2.0.1",
+    "remark-frontmatter": "^4.0.1",
+    "remark-mdx": "^2.2.1",
+    "unist-util-visit": "^4.1.2"
+  },
+  "peerDependencies": {
+    "fast-glob": "^3.2.12",
+    "remark": "^14.0.2",
+    "remark-directive": "^2.0.1",
+    "remark-frontmatter": "^4.0.1",
+    "remark-mdx": "^2.2.1",
+    "unist-util-visit": "^4.1.2"
+  }
+}
