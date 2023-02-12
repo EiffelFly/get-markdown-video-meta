@@ -18,7 +18,11 @@ export type DirectiveComponent = {
   propName: "id" | "url" | "href";
 };
 
+export type VideoProvider = "youtube" | "vimeo";
+
 export type GetMarkdownVideoMetaOption = {
+  // Vimeo is still under developing, we only support youtube right now.
+  provider: VideoProvider;
   targets: string[];
 
   mdxComponents?: MDXComponent[];
@@ -27,7 +31,19 @@ export type GetMarkdownVideoMetaOption = {
   // Log useful information
   verbose?: boolean;
   googleApiKey?: string;
+  vimeoClient?: string;
+  vimeoSecret?: string;
 };
+
+export type GetMarkdownVideoMetaReturn<T, K> = T extends "youtube"
+  ? K extends undefined
+    ? SimpifiedYoutubeMeta[]
+    : RichYoutubeMeta[]
+  : T extends "vimeo"
+  ? []
+  : never;
+
+export type VimeoMeta = {};
 
 export type SimpifiedYoutubeMeta = {
   title: string;
@@ -167,26 +183,28 @@ export type RichYoutubeMeta = {
   localizations: Record<string, { title: string; description: string }>;
 };
 
-export async function getMarkdownVideoMeta({
-  targets,
-  verbose,
-  mdxComponents,
-  directiveComponents,
-  googleApiKey,
-}: GetMarkdownVideoMetaOption): Promise<RichYoutubeMeta[]>;
-export async function getMarkdownVideoMeta({
-  targets,
-  verbose,
-  directiveComponents,
-  mdxComponents,
-}: GetMarkdownVideoMetaOption): Promise<SimpifiedYoutubeMeta[]>;
-export async function getMarkdownVideoMeta({
-  targets,
-  verbose,
-  mdxComponents,
-  googleApiKey,
-  directiveComponents,
-}: GetMarkdownVideoMetaOption) {
+export async function getMarkdownVideoMeta<
+  T extends GetMarkdownVideoMetaOption
+>(
+  options: T
+): Promise<GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>> {
+  const {
+    provider,
+    targets,
+    mdxComponents,
+    directiveComponents,
+    verbose,
+    googleApiKey,
+    vimeoClient,
+    vimeoSecret,
+  } = options;
+
+  if (provider === "vimeo") {
+    return Promise.resolve(
+      [] as GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>
+    );
+  }
+
   if (!targets) {
     const error = new Error(
       "Configuration 'targets' not found, please provide the target folder."
@@ -295,7 +313,9 @@ export async function getMarkdownVideoMeta({
       console.log(notFoundUrls);
     }
 
-    return Promise.resolve(metas);
+    return Promise.resolve(
+      metas as GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>
+    );
   } else {
     let metas: RichYoutubeMeta[] = [];
     let notFoundUrls: string[] = [];
@@ -318,7 +338,9 @@ export async function getMarkdownVideoMeta({
       console.log(notFoundUrls);
     }
 
-    return Promise.resolve(metas);
+    return Promise.resolve(
+      metas as GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>
+    );
   }
 }
 
