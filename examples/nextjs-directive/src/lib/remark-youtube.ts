@@ -3,7 +3,7 @@ import type { Root } from "remark-directive";
 import type { Plugin } from "unified";
 
 export const remarkYoutube: Plugin<
-  [{ validateYoutubeLink?: boolean }],
+  [{ validateYoutubeLink?: boolean; width?: number; height?: number }],
   Root
 > = (options = {}) => {
   if (!options) {
@@ -53,6 +53,8 @@ export const remarkYoutube: Plugin<
                   allow: "picture-in-picture",
                   allowFullScreen: true,
                   className: "embed-youtube",
+                  width: options.width ? options.width : undefined,
+                  height: options.height ? options.height : undefined,
                 };
               }
             })
@@ -66,6 +68,8 @@ export const remarkYoutube: Plugin<
             allow: "picture-in-picture",
             allowFullScreen: true,
             className: "embed-youtube",
+            width: options.width ? options.width : undefined,
+            height: options.height ? options.height : undefined,
           };
         }
       }

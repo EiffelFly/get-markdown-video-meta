@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { join } from "path";
 import glob from "fast-glob";
@@ -5,8 +6,11 @@ import fs from "fs";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkFrontmatter from "remark-frontmatter";
-import remarkHtml from "remark-html";
-import Head from "next/head";
+import remarkRehype from "remark-rehype";
+import remarkDirective from "remark-directive";
+import rehypeStringify from "rehype-stringify";
+import { remarkYoutube } from "@/lib/remark-youtube";
+import rehypeFormat from "rehype-format";
 
 export type BlogPageProps = {
   html: string;
@@ -48,13 +52,17 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async ({
 
   const html = await unified()
     .use(remarkParse)
-    .use(remarkHtml, { sanitize: true })
     .use(remarkFrontmatter)
+    .use(remarkDirective)
+    .use(remarkYoutube, { validateYoutubeLink: false, width: 600, height: 400 })
+    .use(remarkRehype)
+    .use(rehypeFormat)
+    .use(rehypeStringify)
     .process(source);
 
   return {
     props: {
-      html: html.toString(),
+      html: String(html),
     },
   };
 };
