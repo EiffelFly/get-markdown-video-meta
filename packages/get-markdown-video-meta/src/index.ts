@@ -35,10 +35,12 @@ export type GetMarkdownVideoMetaOption = {
   vimeoSecret?: string;
 };
 
-export type GetMarkdownVideoMetaReturn<T, K> = T extends "youtube"
-  ? K extends undefined
-    ? SimpifiedYoutubeMeta[]
-    : RichYoutubeMeta[]
+export type tesaa = GetMarkdownVideoMetaReturn<"youtube", undefined>;
+
+export type GetMarkdownVideoMetaReturn<T, E> = T extends "youtube"
+  ? [E] extends [string]
+    ? RichYoutubeMeta[]
+    : SimpifiedYoutubeMeta[]
   : T extends "vimeo"
   ? []
   : never;
