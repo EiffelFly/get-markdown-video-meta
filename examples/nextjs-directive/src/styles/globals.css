@@ -105,3 +105,13 @@ a {
     color-scheme: dark;
   }
 }
+
+main {
+  display: flex;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}

@@ -69,7 +69,12 @@ const BlogPage = ({ html }: BlogPageProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <div className="container">
+          <div
+            className="markdown-body"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </div>
       </main>
     </>
   );
