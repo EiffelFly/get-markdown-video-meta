@@ -44,15 +44,10 @@ pnpm i get-markdown-video-meta
 
 This tool relys on these dependencies, you have to install them:
 
-```json
-{
-  "fast-glob": "^3.2.12",
-  "remark": "^14.0.2",
-  "remark-directive": "^2.0.1",
-  "remark-frontmatter": "^4.0.1",
-  "remark-mdx": "^2.2.1",
-  "unist-util-visit": "^4.1.2"
-}
+```sh
+npm install fast-glob remark remark-directive remark-frontmatter remark-mdx unist-util-visit
+pnpm install fast-glob remark remark-directive remark-frontmatter remark-mdx unist-util-visit
+yarn add fast-glob remark remark-directive remark-frontmatter remark-mdx unist-util-visit
 ```
 
 Then you can import the named export of this tool.
@@ -61,12 +56,19 @@ Then you can import the named export of this tool.
 import { getMarkdownVideoMeta } from "get-markdown-video-meta"
 
 const meta = await getMarkdownVideoMeta({
+  provider: "youtube",
   targets: ["/blog"],
   mdxComponents: [{ componentName: "Youtube", propName: "url" }],
 });
 ```
 
 ### Configuration
+
+#### `provider`
+
+- type: `youtube`, `vimeo` (The returned meta will be empty array if you use `vimeo`)
+- required: true
+- description: The provider of your videos. Currently, we only support youtube and we will support vimeo in the future.
 
 #### `targets`
 
