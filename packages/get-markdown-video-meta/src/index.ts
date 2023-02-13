@@ -55,12 +55,14 @@ export type SimpifiedYoutubeMeta = {
   thumbnail_width: number;
   thumbnail_url: string;
   html: string;
+  url: string;
 };
 
 export type RichYoutubeMeta = {
   kind: "youtube#video";
   etag: string;
   id: string;
+  url: string;
   snippet: {
     publishedAt: any;
     channelId: string;
@@ -431,6 +433,7 @@ const getSimplifiedYoutubeMeta = async (url: string) => {
       thumbnail_width: data.thumbnail_width,
       thumbnail_url: data.thumbnail_url,
       html: data.html,
+      url,
     };
 
     return meta;
@@ -458,9 +461,10 @@ const getRichYoutubeMeta = async (url: string, googleApiKey: string) => {
       return;
     }
 
-    const data = (await res.json()) as GetRichYoutubeMetaResponse;
+    const data = await res.json();
+    data["url"] = url;
 
-    return data.items[0];
+    return data.items[0] as RichYoutubeMeta;
   } catch (err) {
     return Promise.reject(err);
   }
