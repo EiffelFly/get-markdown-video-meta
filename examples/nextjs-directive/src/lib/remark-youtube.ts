@@ -24,8 +24,6 @@ export const remarkYoutube: Plugin<
       ) {
         if (node.name !== "youtube") return;
 
-        console.log(node);
-
         const data = node.data || (node.data = {});
         const attributes = node.attributes || {};
         const id = attributes.id;
@@ -45,7 +43,6 @@ export const remarkYoutube: Plugin<
           )
             .then((res) => {
               if (res.status === 200) {
-                console.log(res);
                 data.hName = "iframe";
                 data.hProperties = {
                   src: "https://www.youtube.com/embed/" + id,
