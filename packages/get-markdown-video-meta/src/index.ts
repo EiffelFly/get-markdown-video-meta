@@ -56,6 +56,7 @@ export type SimpifiedYoutubeMeta = {
   thumbnail_url: string;
   html: string;
   url: string;
+  id: string | null;
 };
 
 export type RichYoutubeMeta = {
@@ -433,7 +434,8 @@ const getSimplifiedYoutubeMeta = async (url: string) => {
       thumbnail_width: data.thumbnail_width,
       thumbnail_url: data.thumbnail_url,
       html: data.html,
-      url,
+      id: getYoutubeIdFromUrl(url),
+      url: url,
     };
 
     return meta;
