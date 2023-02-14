@@ -115,3 +115,7 @@ main {
   max-width: 600px;
   margin: auto;
 }
+
+h1 {
+  margin-bottom: 40px;
+}

@@ -1,11 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getMarkdownVideoMeta } from "get-markdown-video-meta";
+import Head from "next/head";
 
 export type VideoPageProps = {
   title: string;
   description?: string;
-  url: string;
   html: string;
+  id: string | null;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -16,19 +17,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
     verbose: true,
   });
 
-  let urlFrags: string[] = [];
-
+  let paths: string[] = [];
   for (const meta of metas) {
-    let urlFrag = encodeURIComponent(meta.title);
-    urlFrags.push(urlFrag);
+    if (meta.id) {
+      paths.push(meta.id);
+    }
   }
 
   return {
-    paths: urlFrags.map((frag) => ({
-      params: {
-        path: [frag],
-      },
-    })),
+    paths: paths.map((path) => {
+      return {
+        params: {
+          path: [path],
+        },
+      };
+    }),
 
     fallback: "blocking",
   };
@@ -52,13 +55,7 @@ export const getStaticProps: GetStaticProps<VideoPageProps> = async ({
     verbose: true,
   });
 
-  for (const meta of metas) {
-    console.log(path, encodeURIComponent(meta.title));
-  }
-
-  const targetVideoMeta = metas.find(
-    (meta) => encodeURIComponent(meta.title) === encodeURIComponent(path)
-  );
+  const targetVideoMeta = metas.find((meta) => meta.id === path);
 
   if (!targetVideoMeta) {
     return {
@@ -69,12 +66,42 @@ export const getStaticProps: GetStaticProps<VideoPageProps> = async ({
   return {
     props: {
       title: targetVideoMeta.title,
-      url: targetVideoMeta.url,
       html: targetVideoMeta.html,
+      id: targetVideoMeta.id,
     },
   };
 };
 
-const VideoPage = ({ title, url, html }: VideoPageProps) => {};
+const VideoPage = ({ title, html, id }: VideoPageProps) => {
+  return (
+    <>
+      <Head>
+        <title>Video Page</title>
+        <meta name="description" content="Blog Video Example" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main>
+        <div className="container">
+          <h1>{title}</h1>
+          {id ? (
+            <iframe
+              id="ytplayer"
+              width="600"
+              height="360"
+              src={`https://www.youtube.com/embed/${id}`}
+              style={{ border: "none" }}
+            ></iframe>
+          ) : (
+            <div
+              className="video-body"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          )}
+        </div>
+      </main>
+    </>
+  );
+};
 
 export default VideoPage;
