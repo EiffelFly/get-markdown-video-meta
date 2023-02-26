@@ -1,5 +1,11 @@
 # get-markdown-video-meta
 
+## 0.2.2
+
+### Patch Changes
+
+- f0552f1: Fix release workflow node version issue
+
 ## 0.2.1
 
 ### Patch Changes
