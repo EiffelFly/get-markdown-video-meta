@@ -1,5 +1,12 @@
 # get-markdown-video-meta
 
+## 0.2.1
+
+### Patch Changes
+
+- 2a105e3: Fix deps issue in the example folder that cause ci failure
+- 2a105e3: Add unit-test workflow
+
 ## 0.2.0
 
 ### Minor Changes
