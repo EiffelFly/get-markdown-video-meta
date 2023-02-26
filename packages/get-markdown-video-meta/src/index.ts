@@ -354,7 +354,6 @@ const prepareFilePaths = (
   extension: "mdx" | "md"
 ): string[] => {
   const folder = join(process.cwd(), target);
-  console.log(folder);
   return glob.sync(`**/*.${extension}`, { cwd: folder, absolute: true });
 };
 
@@ -442,13 +441,6 @@ const getSimplifiedYoutubeMeta = async (url: string) => {
   } catch (err) {
     return Promise.reject(err);
   }
-};
-
-type GetRichYoutubeMetaResponse = {
-  kind: "youtube#videoListResponse";
-  etag: string;
-  items: RichYoutubeMeta[];
-  pageInfo: { totalResults: number; resultsPerPage: number };
 };
 
 const getRichYoutubeMeta = async (url: string, googleApiKey: string) => {

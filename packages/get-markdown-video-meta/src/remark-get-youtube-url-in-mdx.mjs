@@ -47,7 +47,24 @@ export default function remarkGetYoutubeUrlInMdx(options) {
         return;
       }
 
-      options.videoUrls.push(targetAttribute["value"]);
+      const propName = targetAttribute.name;
+      const propValue = targetAttribute["value"];
+
+      switch (propName) {
+        case "id":
+          options.videoUrls.push(
+            `https://www.youtube.com/watch?v=${propValue}`
+          );
+          break;
+        case "url":
+          options.videoUrls.push(propValue);
+          break;
+        case "href":
+          options.videoUrls.push(propValue);
+          break;
+        default:
+          break;
+      }
     });
   };
 }
