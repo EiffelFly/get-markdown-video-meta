@@ -3,9 +3,11 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { join } from "path";
 import glob from "fast-glob";
 import fs from "fs";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export type BlogPageProps = {
-  source: string;
+  mdxSource: MDXRemoteSerializeResult;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -40,16 +42,18 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async ({
     fullPath = join(process.cwd(), "blog", params.path);
   }
 
-  const source = fs.readFileSync(fullPath + ".md", "utf8");
+  const source = fs.readFileSync(fullPath + ".mdx", "utf8");
+
+  const mdxSource = await serialize(source, { parseFrontmatter: true });
 
   return {
     props: {
-      source: "",
+      mdxSource,
     },
   };
 };
 
-const BlogPage = ({ source }: BlogPageProps) => {
+const BlogPage = ({ mdxSource }: BlogPageProps) => {
   return (
     <>
       <Head>
@@ -59,7 +63,11 @@ const BlogPage = ({ source }: BlogPageProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="container"></div>
+        <div className="container">
+          <article className="markdown-body">
+            <MDXRemote {...mdxSource} />
+          </article>
+        </div>
       </main>
     </>
   );

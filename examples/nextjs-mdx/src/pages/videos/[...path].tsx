@@ -13,7 +13,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const metas = await getMarkdownVideoMeta({
     provider: "youtube",
     targets: ["blog"],
-    directiveComponents: [{ directiveName: "youtube", propName: "id" }],
+    mdxComponents: [{ componentName: "Youtube", propName: "id" }],
     verbose: true,
   });
 
@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps<VideoPageProps> = async ({
   const metas = await getMarkdownVideoMeta({
     provider: "youtube",
     targets: ["blog"],
-    directiveComponents: [{ directiveName: "youtube", propName: "id" }],
+    mdxComponents: [{ componentName: "Youtube", propName: "id" }],
     verbose: true,
   });
 
@@ -87,8 +87,8 @@ const VideoPage = ({ title, html, id }: VideoPageProps) => {
           {id ? (
             <iframe
               id="ytplayer"
-              width="600"
-              height="360"
+              width="800"
+              height="500"
               src={`https://www.youtube.com/embed/${id}`}
               style={{ border: "none" }}
             ></iframe>
