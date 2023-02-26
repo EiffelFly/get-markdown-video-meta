@@ -13,6 +13,7 @@ importers:
 
   examples/nextjs-directive:
     specifiers:
+      '@next/env': ^13.2.1
       '@next/font': 13.1.6
       '@types/mdast': ^3.0.10
       '@types/node': 18.13.0
@@ -21,7 +22,7 @@ importers:
       eslint: 8.33.0
       eslint-config-next: 13.1.6
       fast-glob: ^3.2.12
-      get-markdown-video-meta: workspace:^0.0.1
+      get-markdown-video-meta: workspace:^0.1.0
       next: 13.1.6
       next-sitemap: ^3.1.52
       react: 18.2.0
@@ -36,6 +37,7 @@ importers:
       unified: ^10.1.2
       unist-util-visit: ^4.1.2
     dependencies:
+      '@next/env': 13.2.1
       '@next/font': 13.1.6
       fast-glob: 3.2.12
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
@@ -49,7 +51,7 @@ importers:
       eslint: 8.33.0
       eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
       get-markdown-video-meta: link:../../packages/get-markdown-video-meta
-      next-sitemap: 3.1.52_catenzrrkdl32b6fu6c5woaahi
+      next-sitemap: 3.1.53_catenzrrkdl32b6fu6c5woaahi
       rehype-format: 4.0.1
       rehype-stringify: 9.0.3
       remark-directive: 2.0.1
@@ -63,6 +65,7 @@ importers:
   examples/nextjs-mdx:
     specifiers:
       '@mdx-js/react': ^2.3.0
+      '@next/env': ^13.2.1
       '@next/font': 13.1.6
       '@types/mdast': ^3.0.10
       '@types/node': 18.13.0
@@ -71,7 +74,7 @@ importers:
       eslint: 8.33.0
       eslint-config-next: 13.1.6
       fast-glob: ^3.2.12
-      get-markdown-video-meta: workspace:^0.0.1
+      get-markdown-video-meta: workspace:^0.1.0
       next: 13.1.6
       next-mdx-remote: ^4.3.0
       next-sitemap: ^3.1.52
@@ -80,6 +83,7 @@ importers:
       typescript: 4.9.5
     dependencies:
       '@mdx-js/react': 2.3.0_react@18.2.0
+      '@next/env': 13.2.1
       '@next/font': 13.1.6
       fast-glob: 3.2.12
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
@@ -94,7 +98,7 @@ importers:
       eslint: 8.33.0
       eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
       get-markdown-video-meta: link:../../packages/get-markdown-video-meta
-      next-sitemap: 3.1.52_catenzrrkdl32b6fu6c5woaahi
+      next-sitemap: 3.1.53_catenzrrkdl32b6fu6c5woaahi
       typescript: 4.9.5
 
   packages/get-markdown-video-meta:
@@ -660,7 +664,6 @@ packages:
 
   /@next/env/13.2.1:
     resolution: {integrity: sha512-Hq+6QZ6kgmloCg8Kgrix+4F0HtvLqVK3FZAnlAoS0eonaDemHe1Km4kwjSWRE3JNpJNcKxFHF+jsZrYo0SxWoQ==}
-    dev: true
 
   /@next/eslint-plugin-next/13.1.6:
     resolution: {integrity: sha512-o7cauUYsXjzSJkay8wKjpKJf2uLzlggCsGUkPu3lP09Pv97jYlekTC20KJrjQKmSv5DXV0R/uks2ZXhqjNkqAw==}
@@ -1591,7 +1594,7 @@ packages:
       eslint: 8.33.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 3.5.3_ohdts44xlqyeyrlje4qnefqeay
-      eslint-plugin-import: 2.27.5_eslint@8.33.0
+      eslint-plugin-import: 2.27.5_ihi7zonu3qx6j4e6z5amj224zy
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.33.0
       eslint-plugin-react: 7.32.2_eslint@8.33.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.33.0
@@ -1621,7 +1624,7 @@ packages:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.33.0
-      eslint-plugin-import: 2.27.5_eslint@8.33.0
+      eslint-plugin-import: 2.27.5_ihi7zonu3qx6j4e6z5amj224zy
       get-tsconfig: 4.4.0
       globby: 13.1.3
       is-core-module: 2.11.0
@@ -1631,7 +1634,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils/2.7.4_b5qyyy7jj6vxczv7eweintx4wu:
+  /eslint-module-utils/2.7.4_g6ihnuafz6a5ascp3mdeb6bodi:
     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -1652,14 +1655,16 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
+      '@typescript-eslint/parser': 5.53.0_4vsywjlpuriuw3tl5oq6zy5a64
       debug: 3.2.7
       eslint: 8.33.0
       eslint-import-resolver-node: 0.3.7
+      eslint-import-resolver-typescript: 3.5.3_ohdts44xlqyeyrlje4qnefqeay
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.5_eslint@8.33.0:
+  /eslint-plugin-import/2.27.5_ihi7zonu3qx6j4e6z5amj224zy:
     resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -1669,6 +1674,7 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
+      '@typescript-eslint/parser': 5.53.0_4vsywjlpuriuw3tl5oq6zy5a64
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -1676,7 +1682,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.33.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.7.4_b5qyyy7jj6vxczv7eweintx4wu
+      eslint-module-utils: 2.7.4_g6ihnuafz6a5ascp3mdeb6bodi
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -3255,8 +3261,8 @@ packages:
       - supports-color
     dev: false
 
-  /next-sitemap/3.1.52_catenzrrkdl32b6fu6c5woaahi:
-    resolution: {integrity: sha512-tY469i4QRV1PwM9BoL+HdKYBCJ83IQl3PmUNapG/Hxp0MIYIw1hINU8E+Edf5Kr8vHXfVzPqDoul/Abu2P0vkw==}
+  /next-sitemap/3.1.53_catenzrrkdl32b6fu6c5woaahi:
+    resolution: {integrity: sha512-l57HFQrydCMApb2WpQxOh9atWQzIqpC9nGPvDVn/P2Raa777kkUlW0WlRN2IXtBSh80aftR6HFrXwKYy+ybApA==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:
