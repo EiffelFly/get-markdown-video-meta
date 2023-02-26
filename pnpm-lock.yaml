@@ -57,6 +57,55 @@ importers:
       unified: 10.1.2
       unist-util-visit: 4.1.2
 
+  examples/nextjs-mdx:
+    specifiers:
+      '@next/font': 13.1.6
+      '@types/mdast': ^3.0.10
+      '@types/node': 18.13.0
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      eslint: 8.33.0
+      eslint-config-next: 13.1.6
+      fast-glob: ^3.2.12
+      get-markdown-video-meta: workspace:^0.0.1
+      next: 13.1.6
+      next-sitemap: ^3.1.52
+      react: 18.2.0
+      react-dom: 18.2.0
+      rehype-format: ^4.0.1
+      rehype-stringify: ^9.0.3
+      remark-directive: ^2.0.1
+      remark-frontmatter: ^4.0.1
+      remark-parse: ^10.0.1
+      remark-rehype: ^10.1.0
+      typescript: 4.9.5
+      unified: ^10.1.2
+      unist-util-visit: ^4.1.2
+    dependencies:
+      '@next/font': 13.1.6
+      fast-glob: 3.2.12
+      next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    devDependencies:
+      '@types/mdast': 3.0.10
+      '@types/node': 18.13.0
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      eslint: 8.33.0
+      eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
+      get-markdown-video-meta: link:../../packages/get-markdown-video-meta
+      next-sitemap: 3.1.52_next@13.1.6
+      rehype-format: 4.0.1
+      rehype-stringify: 9.0.3
+      remark-directive: 2.0.1
+      remark-frontmatter: 4.0.1
+      remark-parse: 10.0.1
+      remark-rehype: 10.1.0
+      typescript: 4.9.5
+      unified: 10.1.2
+      unist-util-visit: 4.1.2
+
   packages/get-markdown-video-meta:
     specifiers:
       '@types/mdast': ^3.0.10

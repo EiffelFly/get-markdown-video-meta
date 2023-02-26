@@ -140,5 +140,9 @@ export type SimpifiedYoutubeMeta = {
 
 MIT
 
+## Useful links
+
+- [Google rich results test](https://search.google.com/test/rich-results)
+
 [^1]: [Video indexing report](https://support.google.com/webmasters/answer/9495631)
 [^2]: [Video SEO best practices#Help Google find your videos](https://developers.google.com/search/docs/appearance/video#help-google-find)
