@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
+    "@next/env": "^13.2.1",
     "@next/font": "13.1.6",
     "fast-glob": "^3.2.12",
     "next": "13.1.6",
