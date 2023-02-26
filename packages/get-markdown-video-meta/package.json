@@ -1,6 +1,6 @@
 {
   "name": "get-markdown-video-meta",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Get your video's metadata in the markdown or mdx file. Powered by remarkjs, fully typed.",
   "main": "index.js",
   "module": "build/index.esm.js",
@@ -11,7 +11,14 @@
     "ts-types": "tsc --emitDeclarationOnly --outDir build",
     "build": "pnpm rimraf build && node ./esbuild.js && pnpm ts-types"
   },
-  "keywords": ["markdown", "MDX", "remark", "SEO", "javascript", "typescript"],
+  "keywords": [
+    "markdown",
+    "MDX",
+    "remark",
+    "SEO",
+    "javascript",
+    "typescript"
+  ],
   "author": "EiffelFly",
   "license": "MIT",
   "devDependencies": {
