@@ -1,5 +1,17 @@
 # get-markdown-video-meta
 
+## 0.2.0
+
+### Minor Changes
+
+- b3a2d96: Update the example using mdx and nextjs
+- b3a2d96: Add release github action
+
+### Patch Changes
+
+- b3a2d96: Fix test issue that the return meta is not correct
+- b3a2d96: Fix a bug that will parse not correct url in mdx file
+
 ## 0.1.0
 
 ### Minor Changes
