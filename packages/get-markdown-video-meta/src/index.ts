@@ -28,6 +28,9 @@ export type GetMarkdownVideoMetaOption = {
   mdxComponents?: MDXComponent[];
   directiveComponents?: DirectiveComponent[];
 
+  // When disable external request, we will only get the video id from the markdown file.
+  disableExternalRequest?: boolean;
+
   // Log useful information
   verbose?: boolean;
   googleApiKey?: string;
@@ -35,10 +38,10 @@ export type GetMarkdownVideoMetaOption = {
   vimeoSecret?: string;
 };
 
-export type tesaa = GetMarkdownVideoMetaReturn<"youtube", undefined>;
-
-export type GetMarkdownVideoMetaReturn<T, E> = T extends "youtube"
-  ? [E] extends [string]
+export type GetMarkdownVideoMetaReturn<T, E, D> = T extends "youtube"
+  ? D extends true
+    ? YoutubeURLs
+    : [E] extends [string]
     ? RichYoutubeMeta[]
     : SimpifiedYoutubeMeta[]
   : T extends "vimeo"
@@ -46,6 +49,8 @@ export type GetMarkdownVideoMetaReturn<T, E> = T extends "youtube"
   : never;
 
 export type VimeoMeta = {};
+
+export type YoutubeURLs = string[];
 
 export type SimpifiedYoutubeMeta = {
   title: string;
@@ -192,13 +197,20 @@ export async function getMarkdownVideoMeta<
   T extends GetMarkdownVideoMetaOption
 >(
   options: T
-): Promise<GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>> {
+): Promise<
+  GetMarkdownVideoMetaReturn<
+    T["provider"],
+    T["googleApiKey"],
+    T["disableExternalRequest"]
+  >
+> {
   const {
     provider,
     targets,
     mdxComponents,
     directiveComponents,
     verbose,
+    disableExternalRequest,
     googleApiKey,
     vimeoClient,
     vimeoSecret,
@@ -206,7 +218,11 @@ export async function getMarkdownVideoMeta<
 
   if (provider === "vimeo") {
     return Promise.resolve(
-      [] as GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>
+      [] as GetMarkdownVideoMetaReturn<
+        T["provider"],
+        T["googleApiKey"],
+        T["disableExternalRequest"]
+      >
     );
   }
 
@@ -288,6 +304,17 @@ export async function getMarkdownVideoMeta<
     }
   }
 
+  // If disableExternalRequest is true, return the all the Youtube URLs we found
+  if (disableExternalRequest) {
+    return Promise.resolve(
+      fullUrls as GetMarkdownVideoMetaReturn<
+        T["provider"],
+        T["googleApiKey"],
+        T["disableExternalRequest"]
+      >
+    );
+  }
+
   if (verbose) {
     consoleLogMessageTitleWithColor("info", "Found these URLs");
     console.log(fullUrls);
@@ -319,7 +346,11 @@ export async function getMarkdownVideoMeta<
     }
 
     return Promise.resolve(
-      metas as GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>
+      metas as GetMarkdownVideoMetaReturn<
+        T["provider"],
+        T["googleApiKey"],
+        T["disableExternalRequest"]
+      >
     );
   } else {
     let metas: RichYoutubeMeta[] = [];
@@ -344,7 +375,11 @@ export async function getMarkdownVideoMeta<
     }
 
     return Promise.resolve(
-      metas as GetMarkdownVideoMetaReturn<T["provider"], T["googleApiKey"]>
+      metas as GetMarkdownVideoMetaReturn<
+        T["provider"],
+        T["googleApiKey"],
+        T["disableExternalRequest"]
+      >
     );
   }
 }

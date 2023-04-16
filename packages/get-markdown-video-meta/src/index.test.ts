@@ -45,3 +45,14 @@ test("Should get the meta from youtube-mdx example", async () => {
     },
   ]);
 });
+
+test("Should only get array of youtube url when disableExternalRequest is true", async () => {
+  const urls = await getMarkdownVideoMeta({
+    provider: "youtube",
+    targets: ["data/youtube-directive/blog"],
+    directiveComponents: [{ directiveName: "youtube", propName: "id" }],
+    disableExternalRequest: true,
+  });
+
+  assert.deepStrictEqual(urls, ["https://www.youtube.com/watch?v=DXUAyRRkI6k"]);
+});
