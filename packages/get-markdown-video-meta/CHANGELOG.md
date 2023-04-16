@@ -1,5 +1,12 @@
 # get-markdown-video-meta
 
+## 0.3.0
+
+### Minor Changes
+
+- 65e75fb: Add release workflow
+- 50a2da6: Add disableExternalRequest option, once it's true we will not request VideoProviders API and only return the video urls we had found
+
 ## 0.2.2
 
 ### Patch Changes
