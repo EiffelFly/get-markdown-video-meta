@@ -13,26 +13,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
+        if: ${{ steps.release.outputs.releases_created }}
         uses: actions/checkout@v3
 
       - name: Setup Node.js 18
+        if: ${{ steps.release.outputs.releases_created }}
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
         id: pnpm-install
+        if: ${{ steps.release.outputs.releases_created }}
+        name: Install pnpm
         with:
           version: 7
           run_install: false
 
       - name: Get pnpm store directory
         id: pnpm-cache
+        if: ${{ steps.release.outputs.releases_created }}
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
       - uses: actions/cache@v3
+        if: ${{ steps.release.outputs.releases_created }}
         name: Setup pnpm cache
         with:
           path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
@@ -41,10 +46,12 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
+        if: ${{ steps.release.outputs.releases_created }}
         run: rm -rf node_modules && pnpm i --frozen-lockfile
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
+        if: ${{ steps.release.outputs.releases_created }}
         uses: changesets/action@v1
         with:
           # This expects you to have a script which does a build for your packages and calls changeset publish

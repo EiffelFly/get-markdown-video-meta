@@ -24,11 +24,11 @@ export const Youtube = ({ url }) => <iframe src={url} ...>Youtbue</iframe>;
 <Youtube url="https://youtu.be/0DPZ9b9ZZr4" />
 ```
 
-This tool utilize remark to find these url link and request video provider's api to get their metadata.
+This tool utilize remark to find these url links and request video provider's api to get their metadata.
 
 ## When should I use this.
 
-One of the situation is encountering "Google could not determine the prominent video on the page" when Google try to index your video content on your website [^1]. The solution of this issue is to create a dedicated page only for this video [^2]. In order to do this, you can use this tool to help you retrieve video meta data and generate pages using the data.
+One of the situation is encountering "Google could not determine the prominent video on the page". when Google try to index your video content on your website [^1]. The solution of this issue is to create a dedicated page only for this video [^2]. In order to do this, you can use this tool to help you retrieve video meta data and generate pages using the data.
 
 ## How to use.
 
