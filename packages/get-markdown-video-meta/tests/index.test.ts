@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getMarkdownVideoMeta } from ".";
+import { getMarkdownVideoMeta } from "../src";
 
 test("Should get the meta from youtube-directive example", async () => {
   const meta = await getMarkdownVideoMeta({
