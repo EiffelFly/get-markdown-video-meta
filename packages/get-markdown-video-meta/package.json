@@ -1,6 +1,6 @@
 {
   "name": "get-markdown-video-meta",
-  "version": "0.3.1-rc.2",
+  "version": "0.3.0",
   "description": "Get your video's metadata in the markdown or mdx file. Powered by remarkjs, fully typed.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
