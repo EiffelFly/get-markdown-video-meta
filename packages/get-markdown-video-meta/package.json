@@ -2,14 +2,21 @@
   "name": "get-markdown-video-meta",
   "version": "0.3.0",
   "description": "Get your video's metadata in the markdown or mdx file. Powered by remarkjs, fully typed.",
-  "main": "index.js",
-  "module": "build/index.esm.js",
-  "typings": "build/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "test": "node --loader tsx --test **/*.test.ts",
     "start": "node --loader tsx ./src/example.ts",
     "ts-types": "tsc --emitDeclarationOnly --outDir build",
-    "build": "pnpm rimraf build && node ./esbuild.js && pnpm ts-types"
+    "build": "pnpm rimraf build && tsup ./src"
   },
   "keywords": [
     "markdown",
@@ -23,12 +30,12 @@
   "license": "MIT",
   "devDependencies": {
     "@types/mdast": "^3.0.10",
-    "esbuild": "^0.17.5",
+    "@types/node": "^18.11.18",
     "rimraf": "^4.1.2",
+    "tsup": "^7.0.0",
     "tsx": "^3.12.2",
     "typescript": "^4.9.5",
-    "unified": "^10.1.2",
-    "@types/node": "^18.11.18"
+    "unified": "^10.1.2"
   },
   "dependencies": {
     "fast-glob": "^3.2.12",
