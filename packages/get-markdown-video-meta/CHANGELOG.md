@@ -1,5 +1,11 @@
 # get-markdown-video-meta
 
+## 0.4.0
+
+### Minor Changes
+
+- 132e240: Change how we build this package
+
 ## 0.3.0
 
 ### Minor Changes
